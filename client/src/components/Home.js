@@ -44,7 +44,7 @@ function Home() {
               {record.type ?
                 <td className='income'>Income </td> : <td className='outcome'>Outcome </td>}
               <td>{record.concept} </td>
-              <td>${record.amount} </td>
+              <td>{record.amount}$ </td>
               <td>{record.date} </td>
             </tr>
           </tbody>
@@ -53,7 +53,7 @@ function Home() {
       <div className='total-record'>
         <label> Total: </label>
         {totalRecord>=0 ?
-          <label className='income'>${totalRecord}</label> : <label className='outcome'>${totalRecord}</label>
+          <label className='income'>{totalRecord}$</label> : <label className='outcome'>{totalRecord}$</label>
         }
         
       </div>
