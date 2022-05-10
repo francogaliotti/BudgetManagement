@@ -4,6 +4,8 @@ import { useEffect, useState } from "react"
 import '../styles/Home.css'
 import EditRecordModal from '../components/EditRecordModal'
 import ConfirmDeleteModal from '../components/ConfirmDeleteModal'
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 function Home() {
 
@@ -50,15 +52,15 @@ function Home() {
               <td>{record.concept} </td>
               <td>{"$" + record.amount} </td>
               <td>{record.date} </td>
-              <td>
-                <button onClick={() => {
+              <td className='buttons'>
+                <EditIcon className="editIcon" onClick={() => {
                   setOpenUpdateModal(true)
                   setRecordSelected(record)
-                }}> Update</button>
-                <button onClick={() => {
+                }}/>
+                <DeleteIcon className='deleteIcon' onClick={() => {
                   setOpenDeleteModal(true)
                   setRecordSelected(record)
-                }}> Delete</button>
+                }}/>
               </td>
             </tr>
           </tbody>

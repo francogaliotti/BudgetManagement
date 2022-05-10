@@ -1,8 +1,10 @@
-
+#root{
+  height: 100vh;
+}
 .App {
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  height: 100vh;
 }
 .navbar {
   position: fixed;

@@ -38,3 +38,13 @@ tbody tr td{
     font-family: Arial, Helvetica, sans-serif;
     margin-top: 10px;
 }
+
+.editIcon:hover{
+    cursor:pointer;
+    color: #444;
+}
+
+.deleteIcon:hover{
+    cursor:pointer;
+    color: #444;
+}
