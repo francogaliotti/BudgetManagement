@@ -5,16 +5,23 @@
     display: flex;
     justify-content: center;
     align-items: center;
+   
 }
+
+.addRecordContainer{
+  margin-top: 100px;
+}
+
 .formContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 500px;
+    width: 38%;
     height: auto;
     padding: 20px;
     border: 5px solid #222;
     border-radius: 5px;
+    
   }
   .formContainer #fieldAddRecord {
     height: 40px;
@@ -30,7 +37,7 @@
     margin-left: 10%;
     height: 40px;
     width: 80%;
-    border: 2px solid #000;
+    border: none;
     background-color: #222;
     border-radius: 5px;
     color: white;
@@ -42,4 +49,13 @@
   span {
     font-size: 80%;
     color: red;
+  }
+  .close-button{
+    margin-left: 97%;
+    font-size: 120%;
+  }
+  .close-button:hover{
+    color: #222;
+    cursor: pointer;
+    text-shadow: 1px 1px 2px black;
   }

@@ -13,12 +13,12 @@ const findAll = (req, res) => {
     })
 }
 
-const createRecord = (req,res) => {
+const createRecord = (req, res) => {
     Record.create({
-        concept:req.body.concept,
-        amount:req.body.amount,
-        type:req.body.type,
-        date:req.body.date
+        concept: req.body.concept,
+        amount: req.body.amount,
+        type: req.body.type,
+        date: req.body.date
     }).then(record => {
         res.json(record)
     }).catch(err => {
@@ -28,9 +28,42 @@ const createRecord = (req,res) => {
     })
 }
 
+const getRecordById = (req, res) => {
+    const id = req.params.id
+    Record.findByPk(id).then(record => {
+        res.json(record)
+    })
+}
+
+const updateRecord = (req, res) => {
+    const id = req.params.id
+    Record.findByPk(id).then(record => {
+        record.update({
+            concept: req.body.concept,
+            amount: req.body.amount,
+            type: record.type,
+            date: req.body.date
+        }).then(record => {
+            res.json(record)
+        })
+    })
+}
+
+const deleteRecord = (req,res) => {
+    const id = req.params.id
+    Record.findByPk(id).then(record => {
+        record.destroy().then(record => {
+            res.json(record)
+        })
+    })
+}
+
 
 
 module.exports = {
     findAll,
-    createRecord
+    createRecord,
+    getRecordById,
+    updateRecord,
+    deleteRecord
 }

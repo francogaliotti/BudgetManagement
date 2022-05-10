@@ -1,14 +1,16 @@
 import './App.css';
 import { useNavigate, Route, Routes, Link } from 'react-router-dom'
-import Home from './components/Home';
-import AddRecord from './components/AddRecord'
+import Home from './pages/Home';
+import AddRecord from './pages/AddRecord'
 
 function App() {
   return (
     <div className="App">
       <div className='navbar'>
-        <Link to="/"> Home</Link>
-        <Link to="/addRecord"> Add Record</Link>
+        <div className='links'>
+          <Link to="/"> Home</Link>
+          <Link to="/addRecord"> Add Record</Link>
+        </div>
       </div>
       <Routes>
         <Route path="/" element={<Home />} />
