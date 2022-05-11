@@ -13,6 +13,8 @@ app.use(cors())
 //routes
 const recordRoutes = require('./routes/RecordRoutes')
 app.use('/records', recordRoutes)
+const authRoutes = require('./routes/AuthRoutes')
+app.use('/auth', authRoutes)
 
 //server
 db.sequelize.sync().then(() => {

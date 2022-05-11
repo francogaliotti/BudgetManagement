@@ -82,7 +82,7 @@ function EditRecordModal({ closeModal, record, setListOfRecords, setTotalRecord 
                                 autoComplete="off"
                                 id="fieldAddRecord"
                                 name="date"
-                                placeholder="Format: Month/Day/Year" />
+                                placeholder="Format: Month/Day/Year or Year/Month/Day" />
 
                             <button type='submit'> Update Record</button>
                         </Form>

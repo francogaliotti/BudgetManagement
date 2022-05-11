@@ -61,7 +61,7 @@ function AddRecord() {
                             autoComplete="off"
                             id="fieldAddRecord"
                             name="date"
-                            placeholder="Format: Month/Day/Year" />
+                            placeholder="Format: Month/Day/Year or Year/Month/Day" />
 
                         <button type='submit'> Add Record</button>
                     </Form>
