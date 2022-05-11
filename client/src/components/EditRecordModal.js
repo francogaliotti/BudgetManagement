@@ -2,7 +2,7 @@ import React from 'react'
 import * as Yup from 'yup'
 import axios from "axios"
 import { Formik, Form, Field, ErrorMessage } from 'formik'
-import '../styles/EditRecordModal.css'
+import '../styles/Modal.css'
 
 function EditRecordModal({ closeModal, record, setListOfRecords, setTotalRecord }) {
 
