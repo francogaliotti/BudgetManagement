@@ -4,9 +4,17 @@ import React from 'react'
 function ConfirmDeleteModal({ closeModal, record, setListOfRecords, setTotalRecord }) {
 
     const deleteRecord = () => {
-        axios.delete(`http://localhost:8080/records/${record.id}`).then((res) => {
+        axios.delete(`http://localhost:8080/records/${record.id}`, {
+            headers: {
+                accessToken: localStorage.getItem("accessToken")
+            }
+        }).then((res) => {
             closeModal(false)
-            axios.get('http://localhost:8080/records').then((res) => {
+            axios.get('http://localhost:8080/records', {
+                headers: {
+                    accessToken: localStorage.getItem("accessToken")
+                }
+            }).then((res) => {
                 setListOfRecords(res.data)
                 setTotalRecord(() => {
                     let sum = 0

@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import { AuthContext } from '../helpers/AuthContext'
 import axios from "axios"
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
@@ -8,6 +9,7 @@ import '../styles/Register.css'
 
 function Register() {
     let navigate = useNavigate();
+    const { setAuthState } = useContext(AuthContext)
     const initialValues = {
         username: "",
         password: "",
@@ -20,6 +22,13 @@ function Register() {
     })
     const onSubmit = (data) => {
         axios.post('http://localhost:8080/auth/register', data).then((res) => {
+            localStorage.setItem("accessToken", res.data.token)
+            localStorage.setItem("username", res.data.user.username)
+            setAuthState({
+                username: res.data.user.username,
+                id: res.data.user.id,
+                status: true
+            })
             navigate(`/`)
         }).catch(err => {
             Swal.fire({

@@ -3,7 +3,10 @@ const { Record, sequelize } = require('../models')
 
 const findAll = (req, res) => {
     Record.findAll({
-        order: sequelize.literal('createdAt ASC')
+        order: sequelize.literal('createdAt ASC'),
+        where:{
+            UserId: req.user.id
+        }
     }).then(records => {
         res.json(records)
     }).catch(err => {
@@ -18,7 +21,8 @@ const createRecord = (req, res) => {
         concept: req.body.concept,
         amount: req.body.amount,
         type: req.body.type,
-        date: req.body.date
+        date: req.body.date,
+        UserId: req.user.id
     }).then(record => {
         res.json(record)
     }).catch(err => {

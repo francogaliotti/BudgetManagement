@@ -1,13 +1,13 @@
 const express = require('express')
 const router = express.Router()
 const recordController = require('../controllers/RecordController')
-//const auth = require('../middlewares/auth')
+const auth = require('../middlewares/auth')
 
-router.get('/', recordController.findAll)
-router.post('/', recordController.createRecord)
-router.get('/:id', recordController.getRecordById)
-router.put('/:id', recordController.updateRecord)
-router.delete('/:id', recordController.deleteRecord)
+router.get('/', auth, recordController.findAll)
+router.post('/', auth, recordController.createRecord)
+router.get('/:id', auth, recordController.getRecordById)
+router.put('/:id', auth, recordController.updateRecord)
+router.delete('/:id', auth, recordController.deleteRecord)
 
 
 module.exports = router

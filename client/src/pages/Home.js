@@ -1,39 +1,51 @@
 import React from 'react'
 import axios from "axios"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import '../styles/Home.css'
 import EditRecordModal from '../components/EditRecordModal'
 import ConfirmDeleteModal from '../components/ConfirmDeleteModal'
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
+import { AuthContext } from '../helpers/AuthContext'
+import { useNavigate } from 'react-router-dom'
 
 function Home() {
-
+  const navigate = useNavigate();
   const [listOfRecords, setListOfRecords] = useState([])
   const [totalRecord, setTotalRecord] = useState(0)
   const [openUpdateModal, setOpenUpdateModal] = useState(false)
   const [openDeleteModal, setOpenDeleteModal] = useState(false)
   const [recordSelected, setRecordSelected] = useState({})
+  const { authState } = useContext(AuthContext)
 
   useEffect(() => {
-    axios.get('http://localhost:8080/records').then((res) => {
-      setListOfRecords(res.data)
-      setTotalRecord(() => {
-        let sum = 0
-        res.data.forEach(record => {
-          if (record.type) {
-            sum += record.amount
-          } else {
-            sum -= record.amount
-          }
+    if (!localStorage.getItem("accessToken")) {
+      navigate('/login')
+    } else {
+      axios.get('http://localhost:8080/records', {
+        headers: {
+          accessToken: localStorage.getItem("accessToken")
+        }
+      }).then((res) => {
+        setListOfRecords(res.data)
+        setTotalRecord(() => {
+          let sum = 0
+          res.data.forEach(record => {
+            if (record.type) {
+              sum += record.amount
+            } else {
+              sum -= record.amount
+            }
+          })
+          return sum
         })
-        return sum
       })
-    })
+    }
   }, [])
 
   return (
     <>
+      <h1> User: {authState.username}</h1>
       <table className='record-table'>
         <thead>
           <tr>
@@ -48,7 +60,7 @@ function Home() {
           return <tbody key={key}>
             <tr>
               {record.type ?
-                <td className='income'>Income </td> : <td className='outcome'>Outcome </td>}
+                <td className='income'>Income </td> : <td className='expense'>Expense </td>}
               <td>{record.concept} </td>
               <td>{"$" + record.amount} </td>
               <td>{record.date} </td>
@@ -56,11 +68,11 @@ function Home() {
                 <EditIcon className="editIcon" onClick={() => {
                   setOpenUpdateModal(true)
                   setRecordSelected(record)
-                }}/>
+                }} />
                 <DeleteIcon className='deleteIcon' onClick={() => {
                   setOpenDeleteModal(true)
                   setRecordSelected(record)
-                }}/>
+                }} />
               </td>
             </tr>
           </tbody>
@@ -69,7 +81,7 @@ function Home() {
       <div className='total-record'>
         <label> Total: </label>
         {totalRecord >= 0 ?
-          <label className='income'>{"$" + totalRecord}</label> : <label className='outcome'>{"$" + totalRecord}</label>
+          <label className='income'>{"$" + totalRecord}</label> : <label className='expense'>{"$" + totalRecord}</label>
         }
       </div>
       {openUpdateModal && <EditRecordModal
@@ -77,7 +89,7 @@ function Home() {
         record={recordSelected}
         setListOfRecords={setListOfRecords}
         setTotalRecord={setTotalRecord} />}
-        {openDeleteModal && <ConfirmDeleteModal
+      {openDeleteModal && <ConfirmDeleteModal
         closeModal={setOpenDeleteModal}
         record={recordSelected}
         setListOfRecords={setListOfRecords}

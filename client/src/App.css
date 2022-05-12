@@ -28,6 +28,27 @@
   text-decoration: none;
   color: #ddd;
 }
+.navbar label {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #ddd;
+  cursor: pointer;
+  margin-right: 15px;
+}
+.navbar label:hover {
+  color: #fff;
+}
 .navbar a:hover {
   color: #fff;
+}
+.navbar .loggedInContainer {
+  flex: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.navbar h3{
+  color: #fff;
+  margin-left: 15px;
 }

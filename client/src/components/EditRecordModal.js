@@ -21,9 +21,17 @@ function EditRecordModal({ closeModal, record, setListOfRecords, setTotalRecord 
     })
 
     const updateRecord = (data) => {
-        axios.put(`http://localhost:8080/records/${record.id}`, data).then((res) => {
+        axios.put(`http://localhost:8080/records/${record.id}`, data, {
+            headers: {
+                accessToken: localStorage.getItem("accessToken")
+            }
+        }).then((res) => {
             closeModal(false)
-            axios.get('http://localhost:8080/records').then((res) => {
+            axios.get('http://localhost:8080/records',{
+                headers: {
+                    accessToken: localStorage.getItem("accessToken")
+                }
+            }).then((res) => {
                 setListOfRecords(res.data)
                 setTotalRecord(() => {
                     let sum = 0
@@ -74,7 +82,7 @@ function EditRecordModal({ closeModal, record, setListOfRecords, setTotalRecord 
                                 as="select"
                                 value={record.type}>
                                 <option value="true">Income</option>
-                                <option value="false">Outcome</option>
+                                <option value="false">Expense</option>
                             </Field>
                             <label>Date: </label>
                             <ErrorMessage name='date' component='span' />

@@ -4,6 +4,7 @@ import axios from "axios"
 import { useNavigate } from 'react-router-dom'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import '../styles/AddRecord.css'
+import { useEffect } from 'react'
 
 function AddRecord() {
     const navigate = useNavigate()
@@ -13,7 +14,11 @@ function AddRecord() {
         type: true
     }
     const onSubmit = (data) => {
-        axios.post('http://localhost:8080/records', data).then((res) => {
+        axios.post('http://localhost:8080/records', data, {
+            headers: {
+                accessToken: localStorage.getItem("accessToken")
+            }
+        }).then((res) => {
             console.log(res)
             navigate('/')
         })
@@ -24,6 +29,12 @@ function AddRecord() {
         type: Yup.boolean().required(),
         date: Yup.date().max(new Date(), "Future date not allowed").required()
     })
+
+    useEffect(() => {
+        if (!localStorage.getItem("accessToken")) {
+            navigate('/login')
+        }
+    }, [])
 
     return (
         <div className='addRecordContainer'>
@@ -53,7 +64,7 @@ function AddRecord() {
                             placeholder="Amount"
                             as="select">
                             <option value="true">Income</option>
-                            <option value="false">Outcome</option>
+                            <option value="false">Expense</option>
                         </Field>
                         <label>Date: </label>
                         <ErrorMessage name='date' component='span' />
