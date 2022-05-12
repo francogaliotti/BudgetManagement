@@ -27,7 +27,7 @@ function EditRecordModal({ closeModal, record, setListOfRecords, setTotalRecord 
             }
         }).then((res) => {
             closeModal(false)
-            axios.get('http://localhost:8080/records',{
+            axios.get('http://localhost:8080/records', {
                 headers: {
                     accessToken: localStorage.getItem("accessToken")
                 }
@@ -53,50 +53,50 @@ function EditRecordModal({ closeModal, record, setListOfRecords, setTotalRecord 
 
     return (
         <div className="modalBackground" >
-            <div className="modalContainer">
-                <div className='addRecordComponent'>
-                    <Formik initialValues={initialValues} onSubmit={updateRecord} validationSchema={validationSchema}>
-                        <Form className="formContainer">
-                            <label className='close-button' onClick={() => { closeModal(false) }}> X</label>
-                            <label>Concept: </label>
-                            <ErrorMessage name='concept' component='span' />
-                            <Field
-                                autoComplete="off"
-                                id="fieldAddRecord"
-                                name="concept"
-                                placeholder="Concept" />
-                            <label>Amount: </label>
-                            <ErrorMessage name='amount' component='span' />
-                            <Field
-                                autoComplete="off"
-                                id="fieldAddRecord"
-                                name="amount"
-                                placeholder="Amount" />
-                            <label>Type: (not editable)</label>
-                            <ErrorMessage name='type' component='span' />
-                            <Field
-                                autoComplete="off"
-                                id="fieldAddRecord"
-                                name="type"
-                                placeholder="Amount"
-                                as="select"
-                                value={record.type}>
-                                <option value="true">Income</option>
-                                <option value="false">Expense</option>
-                            </Field>
-                            <label>Date: </label>
-                            <ErrorMessage name='date' component='span' />
-                            <Field
-                                autoComplete="off"
-                                id="fieldAddRecord"
-                                name="date"
-                                placeholder="Format: Month/Day/Year or Year/Month/Day" />
 
-                            <button type='submit'> Update Record</button>
-                        </Form>
-                    </Formik>
-                </div>
+            <div className='addRecordComponent'>
+                <Formik initialValues={initialValues} onSubmit={updateRecord} validationSchema={validationSchema}>
+                    <Form className="formContainer">
+                        <label className='close-button' onClick={() => { closeModal(false) }}> X</label>
+                        <label>Concept: </label>
+                        <ErrorMessage name='concept' component='span' />
+                        <Field
+                            autoComplete="off"
+                            id="fieldAddRecord"
+                            name="concept"
+                            placeholder="Concept" />
+                        <label>Amount: </label>
+                        <ErrorMessage name='amount' component='span' />
+                        <Field
+                            autoComplete="off"
+                            id="fieldAddRecord"
+                            name="amount"
+                            placeholder="Amount" />
+                        <label>Type: (not editable)</label>
+                        <ErrorMessage name='type' component='span' />
+                        <Field
+                            autoComplete="off"
+                            id="fieldAddRecord"
+                            name="type"
+                            placeholder="Amount"
+                            as="select"
+                            value={record.type}>
+                            <option value="true">Income</option>
+                            <option value="false">Expense</option>
+                        </Field>
+                        <label>Date: </label>
+                        <ErrorMessage name='date' component='span' />
+                        <Field
+                            autoComplete="off"
+                            id="fieldAddRecord"
+                            name="date"
+                            placeholder="Format: Month/Day/Year or Year/Month/Day" />
+
+                        <button type='submit'> Update Record</button>
+                    </Form>
+                </Formik>
             </div>
+
         </div>
     )
 }

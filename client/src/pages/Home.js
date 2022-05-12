@@ -81,7 +81,7 @@ function Home() {
       <div className='total-record'>
         <label> Total: </label>
         {totalRecord >= 0 ?
-          <label className='income'>{"$" + totalRecord}</label> : <label className='expense'>{"$" + totalRecord}</label>
+          <label className='income'>{"$" + totalRecord}</label> : <label className='expense'>{"-$" + -totalRecord}</label>
         }
       </div>
       {openUpdateModal && <EditRecordModal

@@ -10,12 +10,11 @@
 
 .modalContainer {
     font-family: Arial, Helvetica, sans-serif;
-    
     background-color: white;
     height: fit-content;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    width: 45%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -47,4 +46,19 @@
   }
   #cancelBtn:hover {
     background-color: rgb(218, 47, 81);
+  }
+
+  @media (max-width: 750px){
+    .modalContainer {
+        width: 70%;
+    }
+    .modalContainer h1{
+        font-size: 160%;
+    }
+    .modalButtons button {
+        width: 80px;
+        height: 35px;
+        margin: 10px;
+        font-size: 15px;
+    }
   }

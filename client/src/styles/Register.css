@@ -16,11 +16,12 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 38%;
+    width: 45%;
     height: auto;
     padding: 20px;
     border: 5px solid #222;
     border-radius: 5px;
+    background-color:  #fff;
     
   }
   .formContainer #fieldAddRecord {
@@ -49,4 +50,22 @@
   span {
     font-size: 80%;
     color: red;
+  }
+
+  @media (max-width: 800px){
+    .formContainer {
+      width: 65%;
+      
+    }
+    .formContainer #fieldAddRecord {
+      height: 30px;
+      margin-top: 7px;
+      margin-bottom: 7px;
+      font-size: 15px;
+    }
+    .formContainer button {
+      margin-top: 15px;
+      height: 30px;
+    }
+
   }
