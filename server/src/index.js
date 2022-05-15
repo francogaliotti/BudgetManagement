@@ -15,6 +15,8 @@ const recordRoutes = require('./routes/RecordRoutes')
 app.use('/records', recordRoutes)
 const authRoutes = require('./routes/AuthRoutes')
 app.use('/auth', authRoutes)
+const categoryRoutes = require('./routes/CategoryRoutes')
+app.use('/categories', categoryRoutes)
 
 //server
 db.sequelize.sync().then(() => {

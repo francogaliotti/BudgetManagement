@@ -16,8 +16,5 @@ module.exports = (sequelize, DataTypes) =>{
             type: DataTypes.DATEONLY,
         }
     })
-    Record.associate = (models) =>{
-        
-    }
     return Record
 }
