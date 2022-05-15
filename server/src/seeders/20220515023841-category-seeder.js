@@ -1,6 +1,8 @@
 'use strict';
 
 module.exports = {
+
+  //run seeders with: sequelize db:seed:all
   async up(queryInterface, Sequelize) {
     let categories = [
       {name:"Food",type:false,createdAt:new Date(),updatedAt:new Date()},
