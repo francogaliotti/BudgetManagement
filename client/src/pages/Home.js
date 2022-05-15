@@ -67,6 +67,7 @@ function Home() {
           <tr>
             <th scope="col">Type</th>
             <th scope="col">Concept</th>
+            <th scope="col">Category</th>
             <th scope="col">Amount</th>
             <th scope="col">Date</th>
             <th scope='col'>Actions</th>
@@ -78,6 +79,7 @@ function Home() {
               {record.type ?
                 <td className='income'>Income </td> : <td className='expense'>Expense </td>}
               <td>{record.concept} </td>
+              <td>{record.Category.name} </td>
               <td>{"$" + record.amount} </td>
               <td>{record.date} </td>
               <td className='buttons'>

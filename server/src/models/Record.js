@@ -16,5 +16,8 @@ module.exports = (sequelize, DataTypes) =>{
             type: DataTypes.DATEONLY,
         }
     })
+    Record.associate = (models) =>{
+        Record.belongsTo(models.Category)
+    }
     return Record
 }

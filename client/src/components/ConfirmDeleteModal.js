@@ -36,10 +36,15 @@ function ConfirmDeleteModal({ closeModal, record, setListOfRecords, setTotalReco
     return (
         <div className="modalBackground">
             <div className="modalContainer">
-                <h1>Delete Record?</h1>
-                <div className='modalButtons'>
-                    <button onClick={deleteRecord}> Yes</button>
-                    <button onClick={() => { closeModal(false) }} id="cancelBtn"> No</button>
+                <div className='modalContent'>
+                    <div className='modalHeader'>
+                        <label className='close-button' onClick={() => { closeModal(false) }}> X</label>
+                        <h1>Delete Record?</h1>
+                    </div>
+                    <div className='modalButtons'>
+                        <button onClick={deleteRecord}> Yes</button>
+                        <button onClick={() => { closeModal(false) }} id="cancelBtn"> No</button>
+                    </div>
                 </div>
             </div>
         </div>

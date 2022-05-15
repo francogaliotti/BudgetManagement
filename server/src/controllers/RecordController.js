@@ -1,12 +1,13 @@
 const express = require('express')
-const { Record, sequelize } = require('../models')
+const { Record, Category, sequelize } = require('../models')
 
 const findAll = (req, res) => {
     Record.findAll({
         order: sequelize.literal('createdAt DESC'),
         where:{
             UserId: req.user.id
-        }
+        },
+        include: Category
     }).then(records => {
         res.json(records)
     }).catch(err => {
@@ -22,7 +23,8 @@ const createRecord = (req, res) => {
         amount: req.body.amount,
         type: req.body.type,
         date: req.body.date,
-        UserId: req.user.id
+        UserId: req.user.id,
+        CategoryId: req.body.CategoryId
     }).then(record => {
         res.json(record)
     }).catch(err => {
@@ -46,7 +48,8 @@ const updateRecord = (req, res) => {
             concept: req.body.concept,
             amount: req.body.amount,
             type: record.type,
-            date: req.body.date
+            date: req.body.date,
+            CategoryId: req.body.CategoryId
         }).then(record => {
             res.json(record)
         })

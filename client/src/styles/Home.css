@@ -138,3 +138,21 @@ h1 {
         height: 25px;
     }
 }
+@media (max-width: 500px) {
+    .record-table {
+        width: 100%;
+    }
+    thead tr th {
+        font-size: 80%;
+        border: 1px solid #fff;
+    }
+
+    tbody tr td {
+        font-size: 75%;
+    }
+
+
+    h1 label {
+        font-size: 100%;
+    }
+}
