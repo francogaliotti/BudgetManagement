@@ -4,70 +4,137 @@
     border-collapse: collapse;
     margin-top: 10px
 }
-thead{
+
+thead {
     background-color: #222;
     color: #fff;
-    
+
 }
+
 thead tr th {
     padding-top: 10px;
     padding-bottom: 10px;
     font-size: 110%;
     border: 2px solid #fff;
 }
-tbody{
+
+tbody {
     text-align: center;
 }
 
-tbody tr td{
+tbody tr td {
     padding-top: 15px;
     border-bottom: 2px solid #bbb;
 }
 
-.income{
+.income {
     color: green
 }
 
-.expense{
-    color:red
+.expense {
+    color: red
 }
 
-.total-record{
-    margin-left: 50%;
+.total-record {
+    display: flex;
+    flex-direction: row;
     font-size: 130%;
     font-family: Arial, Helvetica, sans-serif;
     margin-top: 10px;
 }
 
-.editIcon:hover{
-    cursor:pointer;
+.total-record .username {
+    flex: 40%
+}
+
+.total-record .record-count {
+    flex: 60%
+}
+
+.editIcon:hover {
+    cursor: pointer;
     color: #444;
 }
 
-.deleteIcon:hover{
-    cursor:pointer;
+.deleteIcon:hover {
+    cursor: pointer;
     color: #444;
 }
-h1{
+
+h1 {
     font-family: Arial, Helvetica, sans-serif;
     margin-top: 80px;
     margin-left: 15px;
     color: #333;
-    font-size: 150%;
+    font-size: 120%;
 }
 
-@media (max-width: 800px){
+
+.paginationBttns {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    width: 80%;
+    height: 40px;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+.paginationBttns a {
+    padding: 10px;
+    margin: 8px;
+    border-radius: 5px;
+    border: 1px solid #222;
+    color: #222;
+    cursor: pointer;
+}
+
+.paginationBttns a:hover {
+    color: white;
+    background-color: #444;
+}
+
+.paginationActive a {
+    color: white;
+    background-color: #222;
+    cursor: default;
+}
+
+.paginationDisabled a {
+    color: #222;
+    background-color: #ddd;
+    border: none;
+}
+.paginationDisabled a:hover {
+    color: #222;
+    background-color: #ddd;
+    border: none;
+    cursor: default;
+}
+
+@media (max-width: 800px) {
     .record-table {
         width: 90%;
     }
+
     thead tr th {
         font-size: 80%;
         border: .5px solid #fff;
     }
-    tbody tr td{
+
+    tbody tr td {
         font-size: 80%;
     }
-    h1{
-        font-size: 120%;
+
+    h1 {
+        font-size: 90%;
+    }
+
+    h1 label {
+        font-size: 100%;
+    }
+
+    .paginationBttns {
+        height: 25px;
     }
 }

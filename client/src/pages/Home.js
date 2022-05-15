@@ -8,6 +8,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { AuthContext } from '../helpers/AuthContext'
 import { useNavigate } from 'react-router-dom'
+import ReactPaginate from 'react-paginate'
 
 function Home() {
   const navigate = useNavigate();
@@ -16,7 +17,16 @@ function Home() {
   const [openUpdateModal, setOpenUpdateModal] = useState(false)
   const [openDeleteModal, setOpenDeleteModal] = useState(false)
   const [recordSelected, setRecordSelected] = useState({})
+  const [pageNumber, setPageNumber] = useState(0)
+  const recordsPerPage = 10
+  const pagesVisited = pageNumber * recordsPerPage
   const { authState } = useContext(AuthContext)
+
+  const displayRecords = listOfRecords.slice(pagesVisited, pagesVisited + recordsPerPage)
+  const pageCount = Math.ceil(listOfRecords.length / recordsPerPage)
+  const changePage = ({ selected }) => {
+    setPageNumber(selected);
+  };
 
   useEffect(() => {
     if (!localStorage.getItem("accessToken")) {
@@ -45,7 +55,13 @@ function Home() {
 
   return (
     <>
-      <h1> User: {authState.username}</h1>
+      <div className='total-record'>
+        <h1 className='username'> User: {authState.username}</h1>
+        <h1 className='record-count'>Total:
+          {totalRecord >= 0 ?
+            <label className='income'>{"$" + totalRecord}</label> : <label className='expense'>{"-$" + -totalRecord}</label>
+          }</h1>
+      </div>
       <table className='record-table'>
         <thead>
           <tr>
@@ -56,7 +72,7 @@ function Home() {
             <th scope='col'>Actions</th>
           </tr>
         </thead>
-        {listOfRecords.map((record, key) => {
+        {displayRecords.map((record, key) => {
           return <tbody key={key}>
             <tr>
               {record.type ?
@@ -78,12 +94,18 @@ function Home() {
           </tbody>
         })}
       </table>
-      <div className='total-record'>
-        <label> Total: </label>
-        {totalRecord >= 0 ?
-          <label className='income'>{"$" + totalRecord}</label> : <label className='expense'>{"-$" + -totalRecord}</label>
-        }
-      </div>
+      <ReactPaginate
+        previousLabel={"previous"}
+        nextLabel={"next"}
+        pageCount={pageCount}
+        onPageChange={changePage}
+        containerClassName={"paginationBttns"}
+        previousLinkClassName={"previousBttn"}
+        nextLinkClassName={"nextBttn"}
+        disabledClassName={"paginationDisabled"}
+        activeClassName={"paginationActive"}
+      />
+
       {openUpdateModal && <EditRecordModal
         closeModal={setOpenUpdateModal}
         record={recordSelected}

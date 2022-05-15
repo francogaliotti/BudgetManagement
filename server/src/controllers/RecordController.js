@@ -3,7 +3,7 @@ const { Record, sequelize } = require('../models')
 
 const findAll = (req, res) => {
     Record.findAll({
-        order: sequelize.literal('createdAt ASC'),
+        order: sequelize.literal('createdAt DESC'),
         where:{
             UserId: req.user.id
         }
