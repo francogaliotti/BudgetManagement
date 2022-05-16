@@ -54,6 +54,7 @@ function Login() {
                     placeholder="Enter your Password"
                 />
                 <button onClick={login}>Login</button>
+                <label className='registerLink' onClick={() => { navigate('/register') }}> Register</label>
             </div>
         </div>
     )

@@ -47,6 +47,15 @@
     background-color: #444;
     cursor: pointer;
   }
+  .registerLink{
+    margin-top: 10px;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  .registerLink:hover{
+    color: #444;
+  }
 
 @media (max-width: 800px){
   .loginContainer {

@@ -10,6 +10,7 @@ import FilterModal from './components/FilterModal'
 import Expenses from './pages/Expenses'
 import Incomes from './pages/Incomes'
 import axios from 'axios'
+import MenuIcon from '@material-ui/icons/Menu';
 
 function App() {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ function App() {
     status: false
   })
   const [openFilterModal, setOpenFilterModal] = useState(false)
+  const [openResponsiveMenu, setOpenResponsiveMenu] = useState(false)
   useEffect(() => {
     axios.get('http://localhost:8080/auth/', {
       headers: {
@@ -37,6 +39,7 @@ function App() {
       })
     })
   }, []);
+
   const logOut = () => {
     localStorage.removeItem("accessToken")
     localStorage.removeItem("username")
@@ -47,13 +50,21 @@ function App() {
     })
     navigate("/login")
   }
+
+  const showResponsiveMenu = () => {
+    if (openResponsiveMenu) {
+      setOpenResponsiveMenu(false)
+    } else {
+      setOpenResponsiveMenu(true)
+    }
+  }
+
   return (
     <div className="App">
       <AuthContext.Provider value={{ authState, setAuthState }}>
         <div className='navbar'>
           <div className='links'>
             {authState.status ? (<>
-
               <Link to="/"> Home</Link>
               <Link to="/addRecord"> Add Record</Link>
               <label onClick={() => { setOpenFilterModal(true) }}> Filter Records</label>
@@ -67,6 +78,30 @@ function App() {
             </>)}
           </div>
         </div>
+
+        <div className='nav'>
+          <MenuIcon className='menuIcon' onClick={showResponsiveMenu} />
+        </div>
+        {openResponsiveMenu && <div className='navbar-responsive'>
+          <div className='links'>
+            {authState.status ? (<>
+              <Link to="/" onClick={showResponsiveMenu}> Home</Link>
+              <Link to="/addRecord" onClick={showResponsiveMenu}> Add Record</Link>
+              <label onClick={() => {
+                setOpenFilterModal(true)
+                showResponsiveMenu()
+              }}> Filter Records</label>
+              <label onClick={() => {
+                logOut()
+                showResponsiveMenu()
+              }}> LogOut</label>
+            </>) : (<>
+              <Link to="/login" onClick={showResponsiveMenu}> Login</Link>
+              <Link to="/register" onClick={showResponsiveMenu}> Register</Link>
+            </>)}
+          </div>
+        </div>}
+
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/addRecord" element={<AddRecord />} />

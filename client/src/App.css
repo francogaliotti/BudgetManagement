@@ -1,11 +1,13 @@
-#root{
+#root {
   height: 100vh;
 }
+
 .App {
   display: flex;
   flex-direction: column;
   height: 100vh;
 }
+
 .navbar {
   position: fixed;
   top: 0;
@@ -17,30 +19,37 @@
   font-family: Arial, Helvetica, sans-serif;
   margin-left: -10px;
 }
+
 .navbar .links {
   flex: 50%;
   height: 100%;
   display: flex;
   align-items: center;
 }
+
 .navbar a {
   margin-left: 20px;
   text-decoration: none;
   color: #ddd;
 }
+
 .navbar label {
   margin-left: 20px;
   text-decoration: none;
   color: #ddd;
   cursor: pointer;
   margin-right: 15px;
+  font-size: 100%;
 }
+
 .navbar label:hover {
   color: #fff;
 }
+
 .navbar a:hover {
   color: #fff;
 }
+
 .navbar .loggedInContainer {
   flex: 50%;
   height: 100%;
@@ -48,7 +57,85 @@
   justify-content: flex-end;
   align-items: center;
 }
-.navbar h3{
+
+.navbar h3 {
   color: #fff;
   margin-left: 15px;
+}
+
+.navbar-responsive {
+  display: none;
+}
+
+@media (max-width: 610px) {
+  .navbar {
+    display: none;
+  }
+
+  .menuIcon{
+    color: #ddd;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+
+  .menuIcon:hover{
+    cursor: pointer;
+    color: #fff
+  }
+
+  .nav{
+    position: fixed;
+    width: 100%;
+    background-color: #000;
+    z-index: 10;
+    height: 40px;
+    top: 0;
+    margin-left: -10px;
+  }
+
+  .navbar-responsive {
+    display: block;
+    position: fixed;
+    width: 80%;
+    height: 70%;
+    background-color: #333;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: -10px;
+  }
+
+  .navbar-responsive .links {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .navbar-responsive a {
+    text-decoration: none;
+    color: #ddd;
+    margin-left: 20px;
+    margin-top: 15px;
+  }
+  
+  .navbar-responsive label {
+    text-decoration: none;
+    color: #ddd;
+    cursor: pointer;
+    margin-left: 20px;
+    margin-top: 15px;
+    font-size: 100%;
+  }
+  
+  .navbar-responsive label:hover {
+    color: #fff;
+  }
+  
+  .navbar-responsive a:hover {
+    color: #fff;
+  }
+  
+  .navbar-responsive h3 {
+    color: #fff;
+    margin-left: 15px;
+  }
 }
