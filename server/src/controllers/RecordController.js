@@ -38,6 +38,7 @@ const findByType = (req, res) => {
 const findByCategory = (req, res) => {
     const categoryId = req.params.id
     Record.findAll({
+        order: sequelize.literal('createdAt DESC'),
         where: {
             UserId: req.user.id,
             CategoryId: categoryId

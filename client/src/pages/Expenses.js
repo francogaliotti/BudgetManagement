@@ -77,9 +77,8 @@ function Expenses() {
   return (
     <>
       <div className='total-record'>
-        <h1 className='username' id='listH1'> List of Expenses</h1>
         <div className='selectContainer'>
-          <label>filter by category:</label>
+          <label>Filter by category:</label>
           <select id='fieldAddRecord'
             onClick={(e) => { getExpensesByCategory(e.target.value) }}
             onKeyUp={(e) => { getExpensesByCategory(e.target.value) }}>

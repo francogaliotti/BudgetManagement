@@ -78,9 +78,8 @@ function Incomes() {
   return (
     <>
       <div className='total-record'>
-        <h1 className='username' id='listH1'> List of Incomes</h1>
         <div className='selectContainer'>
-          <label>filter by category:</label>
+          <label>Filter by category:</label>
           <select id='fieldAddRecord'
             onClick={(e) => { getIncomesByCategory(e.target.value) }}
             onKeyUp={(e) => { getIncomesByCategory(e.target.value) }}>
