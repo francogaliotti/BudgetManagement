@@ -28,11 +28,8 @@ function Home() {
     setPageNumber(selected);
   };
 
-  useEffect(() => {
-    if (!localStorage.getItem("accessToken")) {
-      navigate('/login')
-    } else {
-      axios.get('http://localhost:8080/records', {
+  const getRecords = () => {
+    axios.get('http://localhost:8080/records', {
         headers: {
           accessToken: localStorage.getItem("accessToken")
         }
@@ -50,6 +47,13 @@ function Home() {
           return sum
         })
       })
+  }
+
+  useEffect(() => {
+    if (!localStorage.getItem("accessToken")) {
+      navigate('/login')
+    } else {
+      getRecords()
     }
   }, [])
 
@@ -59,7 +63,7 @@ function Home() {
         <h1 className='username'> User: {authState.username}</h1>
         <h1 className='record-count'>Total:
           {totalRecord >= 0 ?
-            <label className='income'>{"$" + totalRecord}</label> : <label className='expense'>{"-$" + -totalRecord}</label>
+            <label className='income' id='number'>{"$" + totalRecord}</label> : <label className='expense' id='number'>{"-$" + -totalRecord}</label>
           }</h1>
       </div>
       <table className='record-table'>
@@ -111,13 +115,11 @@ function Home() {
       {openUpdateModal && <EditRecordModal
         closeModal={setOpenUpdateModal}
         record={recordSelected}
-        setListOfRecords={setListOfRecords}
-        setTotalRecord={setTotalRecord} />}
+        getRecords= {getRecords} />}
       {openDeleteModal && <ConfirmDeleteModal
         closeModal={setOpenDeleteModal}
         record={recordSelected}
-        setListOfRecords={setListOfRecords}
-        setTotalRecord={setTotalRecord} />}
+        getRecords= {getRecords}/>}
     </>
 
   )

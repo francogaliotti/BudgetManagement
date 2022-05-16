@@ -4,13 +4,14 @@ import axios from "axios"
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import '../styles/Modal.css'
 
-function EditRecordModal({ closeModal, record, setListOfRecords, setTotalRecord }) {
+function EditRecordModal({ closeModal, record, getRecords }) {
 
     const [categories, setCategories] = useState([])
     const initialValues = {
         concept: record.concept,
         amount: record.amount,
-        date: record.date
+        date: record.date,
+        CategoryId: record.Category.id
     }
 
     const validationSchema = Yup.object().shape({
@@ -26,28 +27,9 @@ function EditRecordModal({ closeModal, record, setListOfRecords, setTotalRecord 
             headers: {
                 accessToken: localStorage.getItem("accessToken")
             }
-        }).then((res) => {
+        }).then(() => {
             closeModal(false)
-            axios.get('http://localhost:8080/records', {
-                headers: {
-                    accessToken: localStorage.getItem("accessToken")
-                }
-            }).then((res) => {
-                setListOfRecords(res.data)
-                setTotalRecord(() => {
-                    let sum = 0
-                    res.data.forEach(record => {
-                        if (record.type) {
-                            sum += record.amount
-                        } else {
-                            sum -= record.amount
-                        }
-                    })
-                    return sum
-                })
-            })
-        }).catch(err => {
-            console.log(err)
+            getRecords()
         })
     }
 

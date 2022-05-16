@@ -4,8 +4,43 @@ const { Record, Category, sequelize } = require('../models')
 const findAll = (req, res) => {
     Record.findAll({
         order: sequelize.literal('createdAt DESC'),
-        where:{
+        where: {
             UserId: req.user.id
+        },
+        include: Category
+    }).then(records => {
+        res.json(records)
+    }).catch(err => {
+        res.status(400).json({
+            err
+        })
+    })
+}
+
+const findByType = (req, res) => {
+    const type = req.params.type
+    Record.findAll({
+        order: sequelize.literal('createdAt DESC'),
+        where: {
+            UserId: req.user.id,
+            type: type
+        },
+        include: Category
+    }).then(records => {
+        res.json(records)
+    }).catch(err => {
+        res.status(400).json({
+            err
+        })
+    })
+}
+
+const findByCategory = (req, res) => {
+    const categoryId = req.params.id
+    Record.findAll({
+        where: {
+            UserId: req.user.id,
+            CategoryId: categoryId
         },
         include: Category
     }).then(records => {
@@ -56,7 +91,7 @@ const updateRecord = (req, res) => {
     })
 }
 
-const deleteRecord = (req,res) => {
+const deleteRecord = (req, res) => {
     const id = req.params.id
     Record.findByPk(id).then(record => {
         record.destroy().then(record => {
@@ -72,5 +107,7 @@ module.exports = {
     createRecord,
     getRecordById,
     updateRecord,
-    deleteRecord
+    deleteRecord,
+    findByType,
+    findByCategory
 }

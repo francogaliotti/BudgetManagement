@@ -51,6 +51,18 @@ tbody tr td {
     flex: 60%
 }
 
+.total-record .selectContainer {
+    flex: 40%;
+    margin-top: 85px;
+    margin-right: 10%;   
+}
+
+.total-record .selectContainer select{
+    margin-left: 10px;
+    width: 50%;
+    height: 60%;
+}
+
 .editIcon:hover {
     cursor: pointer;
     color: #444;
@@ -130,15 +142,21 @@ h1 {
         font-size: 90%;
     }
 
-    h1 label {
+    label {
+        font-size: 100%;
+    }
+    #number {
         font-size: 100%;
     }
 
     .paginationBttns {
         height: 25px;
     }
+    .total-record .selectContainer {
+        margin-right: 5%;   
+    }
 }
-@media (max-width: 500px) {
+@media (max-width: 573px) {
     .record-table {
         width: 100%;
     }
@@ -152,7 +170,26 @@ h1 {
     }
 
 
-    h1 label {
+    label {
         font-size: 100%;
+    }
+
+    
+    
+
+    .total-record .selectContainer {
+        margin-top: 75px;
+        margin-right: 0;   
+        flex: 100%;
+    }
+
+    .total-record .selectContainer select {
+        margin-left: 10px;
+        width: 50%;
+        height: 100%;
+    }
+
+    #listH1{
+        display: none;
     }
 }

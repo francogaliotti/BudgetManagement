@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React from 'react'
 
-function ConfirmDeleteModal({ closeModal, record, setListOfRecords, setTotalRecord }) {
+function ConfirmDeleteModal({ closeModal, record, setListOfRecords, setTotalRecord, getRecords }) {
 
     const deleteRecord = () => {
         axios.delete(`http://localhost:8080/records/${record.id}`, {
@@ -10,26 +10,7 @@ function ConfirmDeleteModal({ closeModal, record, setListOfRecords, setTotalReco
             }
         }).then((res) => {
             closeModal(false)
-            axios.get('http://localhost:8080/records', {
-                headers: {
-                    accessToken: localStorage.getItem("accessToken")
-                }
-            }).then((res) => {
-                setListOfRecords(res.data)
-                setTotalRecord(() => {
-                    let sum = 0
-                    res.data.forEach(record => {
-                        if (record.type) {
-                            sum += record.amount
-                        } else {
-                            sum -= record.amount
-                        }
-                    })
-                    return sum
-                })
-            })
-        }).catch(err => {
-            console.log(err)
+            getRecords()
         })
     }
 
@@ -38,7 +19,7 @@ function ConfirmDeleteModal({ closeModal, record, setListOfRecords, setTotalReco
             <div className="modalContainer">
                 <div className='modalContent'>
                     <div className='modalHeader'>
-                        <label className='close-button' onClick={() => { closeModal(false) }}> X</label>
+                        <label className='close-button' id='close' onClick={() => { closeModal(false) }}> X</label>
                         <h1>Delete Record?</h1>
                     </div>
                     <div className='modalButtons'>

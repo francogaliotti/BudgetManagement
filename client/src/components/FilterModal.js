@@ -9,7 +9,7 @@ function FilterModal({ closeModal }) {
             <div className="modalContainer">
                 <div className='modalContent'>
                     <div className='modalHeader'>
-                        <label className='close-button' onClick={() => { closeModal(false) }}> X</label>
+                        <label className='close-button' id='close' onClick={() => { closeModal(false) }}> X</label>
                         <h1>Filter by...</h1>
                     </div>
                     <div className='modalButtons'>
