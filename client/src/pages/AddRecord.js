@@ -36,7 +36,7 @@ function AddRecord() {
     })
 
     const getCategories = (type) => {
-        if (type == "true") {
+        if (type === "true") {
             axios.get(`http://localhost:8080/categories/1`, {
                 headers: {
                     accessToken: localStorage.getItem("accessToken")

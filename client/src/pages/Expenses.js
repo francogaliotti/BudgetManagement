@@ -6,7 +6,6 @@ import EditRecordModal from '../components/EditRecordModal'
 import ConfirmDeleteModal from '../components/ConfirmDeleteModal'
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { AuthContext } from '../helpers/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import ReactPaginate from 'react-paginate'
 
@@ -20,7 +19,6 @@ function Expenses() {
   const [pageNumber, setPageNumber] = useState(0)
   const recordsPerPage = 10
   const pagesVisited = pageNumber * recordsPerPage
-  const { authState } = useContext(AuthContext)
 
   const displayRecords = listOfExpenses.slice(pagesVisited, pagesVisited + recordsPerPage)
   const pageCount = Math.ceil(listOfExpenses.length / recordsPerPage)

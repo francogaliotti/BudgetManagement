@@ -32,7 +32,7 @@ function App() {
         id: res.data.id,
         status: true
       })
-    }).catch((err) => {
+    }).catch(() => {
       setAuthState({
         ...authState,
         status: false
