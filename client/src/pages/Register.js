@@ -13,11 +13,13 @@ function Register() {
     const initialValues = {
         username: "",
         password: "",
+        password2: "",
         email: ""
     }
     const validationSchema = Yup.object().shape({
         username: Yup.string().min(3).max(15).required(),
         password: Yup.string().min(4).max(20).required(),
+        password2: Yup.string().required('You must confirm the password').oneOf([Yup.ref('password'), null], "Passwords do not match"),
         email: Yup.string().email().required()
     })
     const onSubmit = (data) => {
@@ -58,6 +60,14 @@ function Register() {
                             type="password"
                             id="fieldAddRecord"
                             name="password"
+                            placeholder="Your password" />
+                        <label>Confirm password: </label>
+                        <ErrorMessage name='password2' component='span' />
+                        <Field
+                            autoComplete="off"
+                            type="password"
+                            id="fieldAddRecord"
+                            name="password2"
                             placeholder="Your password" />
                         <label>Email: </label>
                         <ErrorMessage name='email' component='span' />
